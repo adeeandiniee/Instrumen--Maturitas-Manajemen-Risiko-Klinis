@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instrumen Maturitas Manajemen Risiko Klinis — RSAB Harapan Kita</title>
+<style>
+:root{--nav:#0d3b66;--nav2:#1b5e8c;--acc:#2a9d8f;--bg:#f4f6f9;--card:#fff;--line:#dde3ea;--txt:#1c2733;--mut:#68788a;--warn:#e76f51;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--txt);line-height:1.55;padding-bottom:90px}
+header{background:linear-gradient(135deg,var(--nav),var(--nav2));color:#fff;padding:26px 18px;text-align:center}
+header h1{font-size:1.15rem;letter-spacing:.4px;font-weight:700}
+header p{font-size:.82rem;opacity:.85;margin-top:6px}
+.wrap{max-width:900px;margin:0 auto;padding:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.card h2{font-size:.95rem;color:var(--nav);text-transform:uppercase;letter-spacing:.6px;border-bottom:2px solid var(--acc);padding-bottom:8px;margin-bottom:14px}
+.card h3{font-size:.88rem;color:var(--nav2);margin:14px 0 8px}
+p,li{font-size:.9rem}
+ol{padding-left:20px}ol li{margin:4px 0}
+table{width:100%;border-collapse:collapse;font-size:.85rem;margin-top:8px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:#eef3f8;color:var(--nav);font-size:.78rem;text-transform:uppercase;letter-spacing:.4px}
+.field{margin-bottom:14px}
+.field label{display:block;font-size:.82rem;font-weight:600;margin-bottom:5px;color:var(--nav)}
+.field input,.field select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px;font-size:.9rem;font-family:inherit;background:#fff}
+.field input:focus,.field select:focus{outline:2px solid var(--acc);outline-offset:-1px}
+.req{color:var(--warn)}
+.domhead{background:linear-gradient(135deg,var(--nav),var(--nav2));color:#fff;padding:12px 16px;border-radius:10px;margin:24px 0 10px;font-weight:700;font-size:.9rem;letter-spacing:.4px}
+.subhead{font-size:.8rem;font-weight:700;color:var(--acc);text-transform:uppercase;letter-spacing:.6px;margin:16px 0 6px;padding-left:2px}
+.q{background:#fff;border:1px solid var(--line);border-left:4px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:10px;transition:border-color .2s}
+.q.done{border-left-color:var(--acc)}
+.q.miss{border-left-color:var(--warn);background:#fff8f6}
+.qtop{display:flex;gap:10px;margin-bottom:4px}
+.num{flex:none;width:26px;height:26px;border-radius:50%;background:var(--nav);color:#fff;font-size:.75rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+.qtxt{font-size:.89rem}
+.qlbl{font-size:.75rem;color:var(--mut);font-style:italic;margin:2px 0 10px 36px}
+.scale{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-left:36px}
+.scale label{cursor:pointer}
+.scale input{display:none}
+.opt{text-align:center;padding:8px 2px;border:1px solid var(--line);border-radius:8px;font-size:.72rem;background:#fafbfc;transition:.15s}
+.opt b{display:block;font-size:1rem;color:var(--nav)}
+.scale input:checked + .opt{background:var(--acc);border-color:var(--acc);color:#fff}
+.scale input:checked + .opt b{color:#fff}
+.bar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);padding:10px 16px;box-shadow:0 -2px 10px rgba(0,0,0,.06);z-index:50}
+.bar .inner{max-width:900px;margin:0 auto;display:flex;align-items:center;gap:12px}
+.prog{flex:1;height:8px;background:#e6ebf1;border-radius:99px;overflow:hidden}
+.prog i{display:block;height:100%;background:var(--acc);width:0;transition:width .3s}
+.cnt{font-size:.8rem;font-weight:700;color:var(--nav);white-space:nowrap}
+button{font-family:inherit;cursor:pointer;border:none;border-radius:8px;font-weight:600}
+.btn{background:var(--acc);color:#fff;padding:11px 20px;font-size:.85rem}
+.btn:hover{filter:brightness(1.08)}
+.btn.alt{background:var(--nav)}
+.btn.gh{background:#fff;color:var(--nav);border:1px solid var(--nav)}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+.hide{display:none}
+.res-hero{text-align:center;padding:26px;background:linear-gradient(135deg,var(--nav),var(--nav2));color:#fff;border-radius:12px;margin-bottom:16px}
+.res-hero .big{font-size:3rem;font-weight:800;line-height:1}
+.res-hero .lvl{font-size:1.05rem;font-weight:700;margin-top:8px;color:#8ee0d5}
+.res-hero .dsc{font-size:.82rem;opacity:.9;margin-top:8px;max-width:520px;margin-inline:auto}
+.dbar{height:20px;background:#e6ebf1;border-radius:4px;overflow:hidden;min-width:90px}
+.dbar i{display:block;height:100%;background:var(--acc)}
+.warn{background:#fff4ef;border:1px solid #f6c6b3;color:#a03e22;padding:10px 14px;border-radius:8px;font-size:.83rem;margin-bottom:12px}
+@media(max-width:600px){.scale{margin-left:0;grid-template-columns:repeat(5,1fr);gap:4px}.opt{font-size:.6rem;padding:8px 1px}.qlbl{margin-left:0}.wrap{padding:10px}.card{padding:16px}}
+@media print{.bar,.actions,header{display:none}body{background:#fff;padding:0}}
+</style>
+</head>
+<body>
+<header>
+  <h1>INSTRUMEN PENGUKURAN TINGKAT MATURITAS<br>MANAJEMEN RISIKO KLINIS</h1>
+  <p>RSAB Harapan Kita &middot; Survei Tahunan Budaya &amp; Tata Kelola Risiko Klinis</p>
+</header>
+
+<div class="wrap">
+
+<div id="formView">
+  <div class="card">
+    <h2>A. Pengantar &amp; Tujuan</h2>
+    <p>Instrumen ini digunakan untuk menilai tingkat kematangan (maturitas) penerapan manajemen risiko klinis di RSAB Harapan Kita. Hasil pengukuran menjadi dasar evaluasi tahunan dan penyusunan program perbaikan berkelanjutan. Instrumen dapat diisi oleh seluruh staf, baik klinis maupun non klinis, sesuai peran masing-masing.</p>
+
+    <h3>B. Petunjuk Pengisian</h3>
+    <ol>
+      <li>Lengkapi terlebih dahulu Bagian Identitas Responden.</li>
+      <li>Bacalah setiap faktor uji (pernyataan) dengan seksama.</li>
+      <li>Pilih satu nilai (1&ndash;5) yang paling menggambarkan kondisi nyata di unit/rumah sakit Anda.</li>
+      <li>Skor rata-rata per domain dan level maturitas akan dihitung otomatis pada halaman hasil.</li>
+    </ol>
+
+    <h3>C. Skala Penilaian (Ordinal 1&ndash;5)</h3>
+    <table>
+      <tr><th>Skor</th><th>Kategori</th><th>Kriteria Implementasi</th></tr>
+      <tr><td><b>1</b></td><td><b>Belum ada</b></td><td>Faktor uji BELUM diimplementasikan</td></tr>
+      <tr><td><b>2</b></td><td><b>Inisiasi</b></td><td>Diimplementasikan pada skala 0% &lt; x &le; 25%</td></tr>
+      <tr><td><b>3</b></td><td><b>Berkembang</b></td><td>Diimplementasikan pada skala 25% &lt; x &le; 50%</td></tr>
+      <tr><td><b>4</b></td><td><b>Matang</b></td><td>Diimplementasikan pada skala 50% &lt; x &le; 75%</td></tr>
+      <tr><td><b>5</b></td><td><b>Optimal</b></td><td>Diimplementasikan pada skala 75% &lt; x &le; 100%</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>D. Identitas Responden</h2>
+    <div class="field"><label>Tanggal Pengisian <span class="req">*</span></label><input type="date" id="i_tgl"></div>
+    <div class="field"><label>Nama / Inisial (opsional)</label><input type="text" id="i_nama" placeholder="mis. A.S."></div>
+    <div class="field"><label>Unit / Instalasi Kerja <span class="req">*</span></label><input type="text" id="i_unit" placeholder="mis. Instalasi Rawat Inap"></div>
+    <div class="field"><label>Jabatan / Peran <span class="req">*</span></label>
+      <select id="i_jab"><option value="">-- Pilih --</option>
+        <option>Direksi</option><option>Ka. Instalasi</option><option>Ka. Ruangan</option>
+        <option>Ketua Tim / PJ</option><option>Champion</option><option>Staf Pelaksana</option><option>Komite Mutu</option></select></div>
+    <div class="field"><label>Kelompok Profesi <span class="req">*</span></label>
+      <select id="i_prof"><option value="">-- Pilih --</option>
+        <option>Dokter</option><option>Perawat / Bidan</option><option>Farmasi</option><option>Radiologi</option>
+        <option>Laboratorium</option><option>Gizi</option><option>Manajemen</option><option>Lainnya</option></select></div>
+    <div class="field"><label>Lama Bekerja di RSAB HK <span class="req">*</span></label>
+      <select id="i_lama"><option value="">-- Pilih --</option>
+        <option>&lt; 1 tahun</option><option>1&ndash;3 tahun</option><option>3&ndash;5 tahun</option>
+        <option>5&ndash;10 tahun</option><option>&gt; 10 tahun</option></select></div>
+  </div>
+
+  <div class="card">
+    <h2>E. Kuesioner Maturitas (50 Butir)</h2>
+    <p style="font-size:.84rem;color:var(--mut)">Pilih satu nilai untuk setiap faktor uji. Jawaban tersimpan otomatis di perangkat ini.</p>
+  </div>
+
+  <div id="qs"></div>
+
+  <div class="card">
+    <div id="warnBox"></div>
+    <div class="actions">
+      <button class="btn" onclick="submitForm()">Lihat Hasil &amp; Level Maturitas</button>
+      <button class="btn gh" onclick="resetAll()">Kosongkan Jawaban</button>
+    </div>
+  </div>
+</div>
+
+<div id="resView" class="hide">
+  <div class="res-hero">
+    <div style="font-size:.78rem;letter-spacing:1px;opacity:.85">SKOR MATURITAS KESELURUHAN</div>
+    <div class="big" id="r_score">0,00</div>
+    <div class="lvl" id="r_level"></div>
+    <div class="dsc" id="r_desc"></div>
+  </div>
+
+  <div class="card">
+    <h2>Identitas Responden</h2>
+    <table id="r_ident"></table>
+  </div>
+
+  <div class="card">
+    <h2>F. Lembar Rekapitulasi Per Domain</h2>
+    <table><thead><tr><th>Kode</th><th>Domain</th><th>Rata-rata</th><th>Level</th><th style="width:120px">Visual</th></tr></thead>
+    <tbody id="r_rekap"></tbody></table>
+  </div>
+
+  <div class="card">
+    <h2>G. Interpretasi Tingkat Maturitas</h2>
+    <table>
+      <tr><th>Level</th><th>Rentang</th><th>Deskripsi</th></tr>
+      <tr><td><b>1 &ndash; INITIAL</b></td><td>1,00 &ndash; 1,79</td><td>Manajemen risiko belum terstruktur, bersifat reaktif dan sporadis.</td></tr>
+      <tr><td><b>2 &ndash; DEVELOPING</b></td><td>1,80 &ndash; 2,59</td><td>Sebagian proses mulai berjalan namun belum konsisten dan belum merata.</td></tr>
+      <tr><td><b>3 &ndash; DEFINED</b></td><td>2,60 &ndash; 3,39</td><td>Proses &amp; kebijakan sudah baku dan disosialisasikan di sebagian besar unit.</td></tr>
+      <tr><td><b>4 &ndash; MANAGED</b></td><td>3,40 &ndash; 4,19</td><td>Proses dijalankan konsisten, dipantau dengan data, dan dievaluasi berkala.</td></tr>
+      <tr><td><b>5 &ndash; OPTIMIZED</b></td><td>4,20 &ndash; 5,00</td><td>Budaya risiko melekat, berbasis data, dan perbaikan berkelanjutan menyeluruh.</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>Ekspor Data</h2>
+    <p style="font-size:.85rem;color:var(--mut);margin-bottom:10px">Unduh jawaban sebagai CSV lalu kirim ke tim Komite Mutu untuk digabungkan, atau cetak sebagai PDF.</p>
+    <div class="actions">
+      <button class="btn alt" onclick="dlCSV()">Unduh CSV</button>
+      <button class="btn gh" onclick="window.print()">Cetak / Simpan PDF</button>
+      <button class="btn gh" onclick="backToForm()">Kembali &amp; Ubah Jawaban</button>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div class="bar" id="bar">
+  <div class="inner">
+    <div class="cnt"><span id="c_done">0</span>/50</div>
+    <div class="prog"><i id="c_bar"></i></div>
+    <button class="btn" onclick="submitForm()">Selesai</button>
+  </div>
+</div>
+
+<script>
+const ITEMS = [{"no": 1, "dom": "DOMAIN A.  KEPEMIMPINAN DAN KOMITMEN MANAJEMEN RISIKO KLINIS", "sub": "Komitmen Pimpinan Puncak", "q": "Pimpinan puncak menunjukkan komitmen nyata terhadap manajemen risiko klinis melalui kebijakan keselamatan pasien, pengawasan langsung, prinsip no-blame, dan alokasi sumber daya manajemen risiko klinis.", "lbl": "Empat pilar komitmen Pimpinan Puncak", "code": "A"}, {"no": 2, "dom": "DOMAIN A.  KEPEMIMPINAN DAN KOMITMEN MANAJEMEN RISIKO KLINIS", "sub": "Komitmen Pimpinan Puncak", "q": "Komitmen manajemen risiko dituangkan secara formal dan berkala, misalnya piagam risiko yang ditandatangani setiap tahun serta audit kematian/pembahasan kasus sulit.", "lbl": "Formalisasi komitmen dan perbaikan berkelanjutan", "code": "A"}, {"no": 3, "dom": "DOMAIN A.  KEPEMIMPINAN DAN KOMITMEN MANAJEMEN RISIKO KLINIS", "sub": "Peran Pimpinan Unit", "q": "Kepala unit/kepala ruangan melakukan pemantauan aktif risiko klinis melalui rapat berkala, keliling unit, dan briefing.", "lbl": "Pemantauan aktif pimpinan unit", "code": "A"}, {"no": 4, "dom": "DOMAIN A.  KEPEMIMPINAN DAN KOMITMEN MANAJEMEN RISIKO KLINIS", "sub": "Peran Pimpinan Unit", "q": "Komitmen pimpinan diterjemahkan ke tingkat unit melalui forum rutin (mis. Jumat Mutu) dan komunikasi berkelanjutan.", "lbl": "Mekanisme penerjemahan komitmen ke unit", "code": "A"}, {"no": 5, "dom": "DOMAIN A.  KEPEMIMPINAN DAN KOMITMEN MANAJEMEN RISIKO KLINIS", "sub": "Peran Pimpinan Unit", "q": "Dukungan pimpinan unit terhadap manajemen risiko klinis konsisten antar unit, tidak bergantung pada siapa kepala unit yang menjabat saat itu.", "lbl": "Konsistensi dukungan antar unit", "code": "A"}, {"no": 6, "dom": "DOMAIN A.  KEPEMIMPINAN DAN KOMITMEN MANAJEMEN RISIKO KLINIS", "sub": "Mekanisme Eskalasi Risiko Klinis", "q": "Risiko tinggi/sangat tinggi dieskalasi melalui jalur pelaporan yang jelas dan dipantau langsung oleh direksi secara berkala.", "lbl": "Kejelasan jalur eskalasi & pemantauan direksi", "code": "A"}, {"no": 7, "dom": "DOMAIN A.  KEPEMIMPINAN DAN KOMITMEN MANAJEMEN RISIKO KLINIS", "sub": "Dukungan Pimpinan", "q": "Dukungan pimpinan terhadap keselamatan pasien dirasakan merata di seluruh shift (pagi, sore, dan malam).", "lbl": "Pemerataan dukungan antar shift", "code": "A"}, {"no": 8, "dom": "DOMAIN A.  KEPEMIMPINAN DAN KOMITMEN MANAJEMEN RISIKO KLINIS", "sub": "Pemberian Insentif dan Penghargaan", "q": "Tersedia sistem pemberian insentif dan penghargaan bagi staf dan champion yang aktif dalam manajemen risiko klinis.", "lbl": "Sistem insentif dan penghargaan", "code": "A"}, {"no": 9, "dom": "DOMAIN B.  KEBIJAKAN DAN TATA KELOLA MANAJEMEN RISIKO KLINIS", "sub": "Ketersediaan Kebijakan dan Panduan", "q": "Tersedia kebijakan, standar prosedur operasional (SPO), atau pedoman khusus manajemen risiko klinis yang terpisah dari kebijakan manajemen risiko secara umum.", "lbl": "Kebijakan spesifik risiko klinis", "code": "B"}, {"no": 10, "dom": "DOMAIN B.  KEBIJAKAN DAN TATA KELOLA MANAJEMEN RISIKO KLINIS", "sub": "Ketersediaan Kebijakan dan Panduan", "q": "Panduan teknis dan alat bantu manajemen risiko klinis yang resmi dan seragam, seperti kamus manajemen risiko, format analisis akar masalah (RCA), analisis modus kegagalan dan dampaknya (FMEA), daftar risiko, serta siklus PDCA, tersedia dan digunakan oleh seluruh unit.", "lbl": "Keseragaman panduan teknis", "code": "B"}, {"no": 11, "dom": "DOMAIN B.  KEBIJAKAN DAN TATA KELOLA MANAJEMEN RISIKO KLINIS", "sub": "Ketersediaan Kebijakan dan Panduan", "q": "PPK/PPT/Clinical Pathway tersedia dan diterapkan per profesi sebagai wujud pengendalian risiko klinis.", "lbl": "Panduan praktik klinis per profesi", "code": "B"}, {"no": 12, "dom": "DOMAIN B.  KEBIJAKAN DAN TATA KELOLA MANAJEMEN RISIKO KLINIS", "sub": "Struktur Peran dan Tanggung Jawab", "q": "Struktur peran manajemen risiko klinis di unit, meliputi pemilik risiko, koordinator manajemen risiko, koordinator insiden keselamatan pasien, dan penanggung jawab sasaran keselamatan pasien, ditetapkan melalui surat keputusan yang diperbarui secara berkala serta memiliki pembagian tugas yang jelas dan telah disosialisasikan.", "lbl": "Struktur & kejelasan peran formal lintas level", "code": "B"}, {"no": 13, "dom": "DOMAIN B.  KEBIJAKAN DAN TATA KELOLA MANAJEMEN RISIKO KLINIS", "sub": "Pemahaman Staf terhadap Kebijakan", "q": "Seluruh staf memahami substansi SPO/kebijakan manajemen risiko klinis secara merata, bukan sekadar pembacaan rutin tanpa penghayatan.", "lbl": "Internalisasi kebijakan oleh staf", "code": "B"}, {"no": 14, "dom": "DOMAIN B.  KEBIJAKAN DAN TATA KELOLA MANAJEMEN RISIKO KLINIS", "sub": "Mekanisme Pelaporan dan Akuntabilitas", "q": "Regulasi pelaporan insiden disosialisasikan ulang secara rutin dan berkelanjutan hingga level ruangan.", "lbl": "Sosialisasi regulasi berkelanjutan", "code": "B"}, {"no": 15, "dom": "DOMAIN B.  KEBIJAKAN DAN TATA KELOLA MANAJEMEN RISIKO KLINIS", "sub": "Gap Maturitas Dokumen vs Implementasi", "q": "Dokumen manajemen risiko klinis diperbarui dan digunakan secara berkelanjutan, bukan hanya disiapkan menjelang akreditasi.", "lbl": "Kesinambungan implementasi vs kelengkapan dokumen", "code": "B"}, {"no": 16, "dom": "DOMAIN C.  BUDAYA SADAR RISIKO DAN BUDAYA KESELAMATAN", "sub": "Budaya Pelaporan Insiden", "q": "Staf melaporkan insiden secara proaktif, tidak hanya setelah terjadi masalah atau dampak (pola pelaporan tidak lagi insidental/reaktif).", "lbl": "Proaktivitas pelaporan", "code": "C"}, {"no": 17, "dom": "DOMAIN C.  BUDAYA SADAR RISIKO DAN BUDAYA KESELAMATAN", "sub": "Budaya Pelaporan Insiden", "q": "KNC/KTC dipahami penting dan dilaporkan sebagai pembelajaran, tidak dianggap 'sudah lewat, tidak perlu dilaporkan'.", "lbl": "Pemahaman ambang pelaporan near miss", "code": "C"}, {"no": 18, "dom": "DOMAIN C.  BUDAYA SADAR RISIKO DAN BUDAYA KESELAMATAN", "sub": "Blaming Culture vs Just Culture", "q": "Prinsip just culture diterapkan secara konsisten oleh pimpinan hingga supervisor langsung, bukan hanya pada tingkat manajemen puncak.", "lbl": "Konsistens Penerapani just culture lintas level", "code": "C"}, {"no": 19, "dom": "DOMAIN C.  BUDAYA SADAR RISIKO DAN BUDAYA KESELAMATAN", "sub": "Blaming Culture vs Just Culture", "q": "Pelapor insiden tidak menerima konsekuensi punitif seperti Surat Peringatan, penilaian kinerja buruk, dan pembinaan pascainsiden dilakukan sebagai pembelajaran, bukan hukuman.", "lbl": "Ketiadaan konsekuensi punitif bagi pelapor", "code": "C"}, {"no": 20, "dom": "DOMAIN C.  BUDAYA SADAR RISIKO DAN BUDAYA KESELAMATAN", "sub": "Psychological Safety", "q": "Sistem perlindungan pelapor jelas dan diketahui staf, termasuk tersedianya pilihan pelaporan anonim atau menggunakan inisial.", "lbl": "Perlindungan pelapor dan kerahasiaan identitas", "code": "C"}, {"no": 21, "dom": "DOMAIN C.  BUDAYA SADAR RISIKO DAN BUDAYA KESELAMATAN", "sub": "Psychological Safety", "q": "Staf merasa aman untuk saling mengingatkan potensi risiko tanpa takut dikucilkan atau menjadi bahan pembicaraan rekan kerja.", "lbl": "Keamanan psikologis untuk menyampaikan risiko klinis", "code": "C"}, {"no": 22, "dom": "DOMAIN C.  BUDAYA SADAR RISIKO DAN BUDAYA KESELAMATAN", "sub": "Perilaku Proaktif Staf", "q": "Briefing harian dan serah terima digunakan secara rutin untuk membahas risiko serta isu keselamatan pasien, sedangkan tim champion berperan aktif dalam mengidentifikasi dan melaporkan risiko klinis di unit kerja.", "lbl": "Mekanisme proaktif harian & peran tim champion", "code": "C"}, {"no": 23, "dom": "DOMAIN C.  BUDAYA SADAR RISIKO DAN BUDAYA KESELAMATAN", "sub": "Faktor Penguat Budaya Keselamatan", "q": "Kepala unit menjadi role model perilaku keselamatan pasien dan pelaporan bagi seluruh stafnya.", "lbl": "Keteladanan kepala unit", "code": "C"}, {"no": 24, "dom": "DOMAIN C.  BUDAYA SADAR RISIKO DAN BUDAYA KESELAMATAN", "sub": "Keseragaman Budaya Sadar Risiko Klinis", "q": "Budaya sadar risiko klinis terbangun merata di seluruh unit baik klinis maupun manajerial tanpa kesenjangan yang berarti antar unit.", "lbl": "Pemerataan budaya antar unit", "code": "C"}, {"no": 25, "dom": "DOMAIN D.  PROSES MANAJEMEN RISIKO KLINIS", "sub": "Identifikasi Risiko Klinis", "q": "Identifikasi risiko dilakukan sistematis dan partisipatif melibatkan lintas profesi, dengan pendampingan Subkomite Manajemen Risiko.", "lbl": "Identifikasi partisipatif dan terdampingi", "code": "D"}, {"no": 26, "dom": "DOMAIN D.  PROSES MANAJEMEN RISIKO KLINIS", "sub": "Identifikasi Risiko Klinis", "q": "Setiap unit melaksanakan identifikasi risiko klinis secara partisipatif lintas profesi berdasarkan proses kerja, karakteristik layanan, dan kekhususan unit.", "lbl": "Kesesuaian risiko dengan karakteristik unit", "code": "D"}, {"no": 27, "dom": "DOMAIN D.  PROSES MANAJEMEN RISIKO KLINIS", "sub": "Analisis dan Penetapan Risiko Klinis Prioritas", "q": "Analisis risiko menggunakan metode grading matriks dampak dan kemungkinan dengan tingkat risiko sangat rendah, rendah, sedang, tinggi dan sangat tinggi.", "lbl": "Metode analisis dan grading baku", "code": "D"}, {"no": 28, "dom": "DOMAIN D.  PROSES MANAJEMEN RISIKO KLINIS", "sub": "Analisis dan Penetapan Risiko Klinis Prioritas", "q": "Analisis RCA dilakukan untuk setiap Kejadian Tidak Diharapkan (KTD) dan sentinel, sedangkan analisis FMEA dilakukan terhadap risiko prioritas unit dengan pendampingan komite mutu.", "lbl": "Penerapan analisis RCA dan FMEA", "code": "D"}, {"no": 29, "dom": "DOMAIN D.  PROSES MANAJEMEN RISIKO KLINIS", "sub": "Analisis dan Penetapan Risiko Klinis Prioritas", "q": "Analisis akar masalah dilakukan mendalam hingga menghasilkan rekomendasi perubahan sistem, bukan sekadar 'sosialisasi ulang SOP'.", "lbl": "Kedalaman Analisis Akar Masalah dan Rekomendasi Perbaikan", "code": "D"}, {"no": 30, "dom": "DOMAIN D.  PROSES MANAJEMEN RISIKO KLINIS", "sub": "Pengendalian Risiko Klinis", "q": "Rencana pengendalian risiko memuat tindakan perbaikan, penanggung jawab, dan target waktu yang jelas serta terukur.", "lbl": "Kelengkapan rencana pengendalian risiko", "code": "D"}, {"no": 31, "dom": "DOMAIN D.  PROSES MANAJEMEN RISIKO KLINIS", "sub": "Pengendalian Risiko Klinis", "q": "Risiko prioritas unit digunakan sebagai dasar penetapan indikator mutu dan dilakukan pemantauan secara berkala.", "lbl": "Penetapan indikator mutu", "code": "D"}, {"no": 32, "dom": "DOMAIN D.  PROSES MANAJEMEN RISIKO KLINIS", "sub": "Pemantauan Efektivitas Pengendalian Risiko Klinis", "q": "Efektivitas pengendalian risiko klinis dievaluasi berdasarkan dampaknya terhadap keselamatan pasien, bukan hanya berdasarkan pelaksanaan kegiatan.", "lbl": "Evaluasi Outcome Pengendalian Risiko Klinis", "code": "D"}, {"no": 33, "dom": "DOMAIN D.  PROSES MANAJEMEN RISIKO KLINIS", "sub": "Kualitas Pelaporan Insiden", "q": "Pelaporan insiden memenuhi standar waktu 2x24 jam dengan kronologi yang lengkap dan jelas.", "lbl": "Ketepatan waktu dan kualitas kronologi", "code": "D"}, {"no": 34, "dom": "DOMAIN D.  PROSES MANAJEMEN RISIKO KLINIS", "sub": "Kualitas Pelaporan Insiden", "q": "Formulir pelaporan insiden dibuat sederhana dan mudah digunakan, sedangkan penilaian tingkat risiko dan analisis lanjutan dilakukan oleh komite mutu.", "lbl": "Kesederhanaan Formulir dan Pembagian Tanggung Jawab", "code": "D"}, {"no": 35, "dom": "DOMAIN D.  PROSES MANAJEMEN RISIKO KLINIS", "sub": "Umpan Balik dan Tindak Lanjut", "q": "Hasil pelaporan insiden dan analisis RCA disampaikan kembali kepada pelapor serta staf terkait sebagai pembelajaran dan dasar perbaikan.", "lbl": "Mekanisme Umpan Balik Insiden", "code": "D"}, {"no": 36, "dom": "DOMAIN D.  PROSES MANAJEMEN RISIKO KLINIS", "sub": "Umpan Balik dan Tindak Lanjut", "q": "Rekomendasi hasil RCA atau investigasi ditindaklanjuti secara konsisten untuk mencegah terulangnya insiden serupa.", "lbl": "Tindak Lanjut Rekomendasi Perbaikan", "code": "D"}, {"no": 37, "dom": "DOMAIN E.  SUMBER DAYA MANUSIA DAN KAPABILITAS", "sub": "Kompetensi Staf", "q": "Staf memiliki kompetensi mengenali, menilai, dan menangani risiko klinis yang dijamin melalui kredensial, pelatihan, dan mentoring.", "lbl": "Penjaminan kompetensi manajemen risiko", "code": "E"}, {"no": 38, "dom": "DOMAIN E.  SUMBER DAYA MANUSIA DAN KAPABILITAS", "sub": "Kompetensi Staf", "q": "Staf baru mendapat orientasi dan mentoring manajemen risiko klinis yang terstandar, tidak sekadar meniru kebiasaan senior.", "lbl": "Standarisasi pembekalan staf baru", "code": "E"}, {"no": 39, "dom": "DOMAIN E.  SUMBER DAYA MANUSIA DAN KAPABILITAS", "sub": "Program Pelatihan", "q": "Pelatihan Manajemen Risiko Klinis menjangkau seluruh staf pelaksana secara rutin dan terjadwal, tidak hanya kepala unit/penanggung jawab.", "lbl": "Pemerataan jangkauan pelatihan", "code": "E"}, {"no": 40, "dom": "DOMAIN E.  SUMBER DAYA MANUSIA DAN KAPABILITAS", "sub": "Program Pelatihan", "q": "Tersedia coaching individu atau kelompok kecil serta pendampingan berkelanjutan setelah pelatihan untuk memastikan penerapan manajemen risiko klinis.", "lbl": "Pendampingan Berkelanjutan Pasca Pelatihan", "code": "E"}, {"no": 41, "dom": "DOMAIN E.  SUMBER DAYA MANUSIA DAN KAPABILITAS", "sub": "Kecukupan SDM", "q": "SDM pengelola risiko institusi memiliki jumlah dan alokasi waktu yang memadai untuk mendampingi pelaksanaan manajemen risiko di seluruh unit kerja.", "lbl": "Kecukupan Kapasitas Pengelola Risiko", "code": "E"}, {"no": 42, "dom": "DOMAIN E.  SUMBER DAYA MANUSIA DAN KAPABILITAS", "sub": "Kebutuhan Dukungan", "q": "Pemantauan kepatuhan dilakukan melalui observasi lapangan secara berkala untuk memastikan penerapan manajemen risiko klinis, tidak hanya berdasarkan laporan mandiri.", "lbl": "Verifikasi Kepatuhan Berbasis Observasi", "code": "E"}, {"no": 43, "dom": "DOMAIN F.  DIGITALISASI MANAJEMEN RISIKO KLINIS", "sub": "Otomatisasi Sistem Pelaporan", "q": "Sistem pelaporan insiden digital terintegrasi dalam satu kanal, tidak terfragmentasi antara pelaporan verbal, Google Form, dan formulir manual antar unit.", "lbl": "Integrasi sistem pelaporan", "code": "F"}, {"no": 44, "dom": "DOMAIN F.  DIGITALISASI MANAJEMEN RISIKO KLINIS", "sub": "Otomatisasi Sistem Pelaporan", "q": "Tersedia dashboard mutu dan keselamatan pasien untuk pemantauan risiko secara otomatis.", "lbl": "Ketersediaan dashboard pemantauan", "code": "F"}, {"no": 45, "dom": "DOMAIN F.  DIGITALISASI MANAJEMEN RISIKO KLINIS", "sub": "Otomatisasi Sistem Pelaporan", "q": "Digitalisasi sistem pelaporan, termasuk notifikasi otomatis dan integrasi dengan SIMRS dapat mengurangi beban administrasi manual staf klinis..", "lbl": "Efisiensi Proses melalui Digitalisasi", "code": "F"}, {"no": 46, "dom": "DOMAIN G.  TATA KELOLA RISIKO KLINIS LINTAS DEPARTEMEN", "sub": "Kolaborasi dan Integrasi Pengelolaan Risiko Klinis", "q": "Pengelolaan risiko klinis dilakukan secara terpadu melalui koordinasi, komunikasi, dan kolaborasi antarunit serta antarprofesi yang terkait, sehingga risiko tidak dikelola secara terpisah oleh masing-masing unit..", "lbl": "Koordinasi Lintas Unit dan Profesi", "code": "G"}, {"no": 47, "dom": "DOMAIN G.  TATA KELOLA RISIKO KLINIS LINTAS DEPARTEMEN", "sub": "Mekanisme Koordinasi dan Penyelesaian Risiko Lintas Unit", "q": "Insiden yang melibatkan lebih dari satu unit ditangani melalui forum lintas unit dan kolaborasi multidisiplin untuk memastikan analisis, dan rekomendasi perbaikan yang menyeluruh dan tepat sasaran.", "lbl": "Forum Koordinasi Lintas Unit", "code": "G"}, {"no": 48, "dom": "DOMAIN G.  TATA KELOLA RISIKO KLINIS LINTAS DEPARTEMEN", "sub": "Keterpaduan Sistem Informasi Lintas Unit", "q": "Sistem informasi antarunit terintegrasi untuk memastikan ketersediaan data yang akurat dan mencegah risiko klinis akibat kesenjangan informasi.", "lbl": "Integrasi data lintas unit", "code": "G"}, {"no": 49, "dom": "DOMAIN H.  INVESTASI DAN PERENCANAAN BERBASIS RISIKO", "sub": "Pengambilan Keputusan Berbasis Risiko", "q": "Perencanaan sumber daya, fasilitas, teknologi, dan kebutuhan layanan dilakukan berdasarkan tingkat risiko serta dampaknya terhadap keselamatan pasien.", "lbl": "Integrasi Risiko dalam Perencanaan Layanan", "code": "H"}, {"no": 50, "dom": "DOMAIN H.  INVESTASI DAN PERENCANAAN BERBASIS RISIKO", "sub": "Pertimbangan Nilai dan Dampak Risiko", "q": "Keputusan investasi dan pengendalian risiko mempertimbangkan manfaat jangka panjang, termasuk potensi pengurangan dampak dan kerugian akibat kejadian tidak diharapkan.", "lbl": "Analisis Biaya dan Manfaat Pengendalian Risiko", "code": "H"}];
+const DOMS = {
+ A:["KEPEMIMPINAN DAN KOMITMEN",8], B:["KEBIJAKAN DAN TATA KELOLA",7],
+ C:["BUDAYA RISIKO DAN BUDAYA KESELAMATAN",9], D:["PROSES MANAJEMEN RISIKO KLINIS",12],
+ E:["SUMBER DAYA MANUSIA DAN KAPABILITAS",6], F:["DIGITALISASI MANAJEMEN RISIKO KLINIS",3],
+ G:["TATA KELOLA RISIKO KLINIS LINTAS DEPARTEMEN",3], H:["INVESTASI DAN PERENCANAAN BERBASIS RISIKO",2]};
+const LBL={1:"Belum ada",2:"Inisiasi",3:"Berkembang",4:"Matang",5:"Optimal"};
+const LEVELS=[[1,1.79,"LEVEL 1 – INITIAL","Manajemen risiko belum terstruktur, bersifat reaktif dan sporadis."],
+[1.8,2.59,"LEVEL 2 – DEVELOPING","Sebagian proses mulai berjalan namun belum konsisten dan belum merata."],
+[2.6,3.39,"LEVEL 3 – DEFINED","Proses & kebijakan sudah baku dan disosialisasikan di sebagian besar unit."],
+[3.4,4.19,"LEVEL 4 – MANAGED","Proses dijalankan konsisten, dipantau dengan data, dan dievaluasi berkala."],
+[4.2,5,"LEVEL 5 – OPTIMIZED","Budaya risiko melekat, berbasis data, dan perbaikan berkelanjutan menyeluruh."]];
+const KEY="mrk_rsab_v1";
+let ans={}, ident={};
+
+function esc(s){return String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]))}
+function levelOf(v){for(const L of LEVELS) if(v>=L[0]&&v<=L[1]) return L; return LEVELS[0];}
+function fmt(v){return v.toFixed(2).replace('.',',')}
+
+function render(){
+  let h="", curD=null, curS=null;
+  ITEMS.forEach(it=>{
+    if(it.code!==curD){curD=it.code;curS=null;
+      h+=`<div class="domhead">DOMAIN ${curD}. ${esc(DOMS[curD][0])} &nbsp;<span style="opacity:.7;font-weight:400">(${DOMS[curD][1]} butir)</span></div>`;}
+    if(it.sub!==curS){curS=it.sub; h+=`<div class="subhead">${esc(curS)}</div>`;}
+    h+=`<div class="q" id="q${it.no}"><div class="qtop"><div class="num">${it.no}</div><div class="qtxt">${esc(it.q)}</div></div>`;
+    if(it.lbl) h+=`<div class="qlbl">${esc(it.lbl)}</div>`;
+    h+=`<div class="scale">`;
+    for(let s=1;s<=5;s++) h+=`<label><input type="radio" name="q${it.no}" value="${s}" onchange="pick(${it.no},${s})"><div class="opt"><b>${s}</b>${LBL[s]}</div></label>`;
+    h+=`</div></div>`;
+  });
+  document.getElementById('qs').innerHTML=h;
+  load();
+}
+function pick(n,v){ans[n]=v;document.getElementById('q'+n).className='q done';save();prog();}
+function prog(){const d=Object.keys(ans).length;document.getElementById('c_done').textContent=d;
+  document.getElementById('c_bar').style.width=(d/50*100)+'%';}
+function collectIdent(){['tgl','nama','unit','jab','prof','lama'].forEach(k=>ident[k]=document.getElementById('i_'+k).value);}
+function save(){collectIdent();try{localStorage.setItem(KEY,JSON.stringify({ans,ident}))}catch(e){}}
+function load(){try{const d=JSON.parse(localStorage.getItem(KEY)||'{}');
+  if(d.ans){ans=d.ans;for(const n in ans){const el=document.querySelector(`input[name=q${n}][value="${ans[n]}"]`);if(el){el.checked=true;document.getElementById('q'+n).className='q done';}}}
+  if(d.ident){for(const k in d.ident){const el=document.getElementById('i_'+k);if(el)el.value=d.ident[k];}}
+  }catch(e){}
+  if(!document.getElementById('i_tgl').value) document.getElementById('i_tgl').value=new Date().toISOString().slice(0,10);
+  prog();}
+function resetAll(){if(!confirm('Kosongkan semua jawaban?'))return;localStorage.removeItem(KEY);location.reload();}
+['tgl','nama','unit','jab','prof','lama'].forEach(k=>{});
+
+function submitForm(){
+  collectIdent();
+  let miss=[]; const req={tgl:'Tanggal',unit:'Unit/Instalasi',jab:'Jabatan',prof:'Profesi',lama:'Lama Bekerja'};
+  for(const k in req) if(!ident[k]) miss.push(req[k]);
+  let unans=ITEMS.filter(i=>!ans[i.no]).map(i=>i.no);
+  const wb=document.getElementById('warnBox');
+  if(miss.length||unans.length){
+    wb.innerHTML=`<div class="warn"><b>Belum lengkap.</b>${miss.length?' Isi identitas: '+miss.join(', ')+'.':''}${unans.length?' Butir belum dijawab: '+unans.join(', ')+'.':''}</div>`;
+    unans.forEach(n=>document.getElementById('q'+n).className='q miss');
+    const t = miss.length?document.getElementById('i_'+Object.keys(req).find(k=>!ident[k])):document.getElementById('q'+unans[0]);
+    t.scrollIntoView({behavior:'smooth',block:'center'});
+    return;
+  }
+  wb.innerHTML='';
+  showResults();
+}
+function domAvgs(){const o={};for(const c in DOMS){const its=ITEMS.filter(i=>i.code===c);
+  o[c]=its.reduce((s,i)=>s+Number(ans[i.no]),0)/its.length;}return o;}
+
+function showResults(){
+  const av=domAvgs();
+  const overall=Object.values(av).reduce((a,b)=>a+b,0)/8;
+  const L=levelOf(overall);
+  document.getElementById('r_score').textContent=fmt(overall);
+  document.getElementById('r_level').textContent=L[2];
+  document.getElementById('r_desc').textContent=L[3];
+  const nm={tgl:'Tanggal Pengisian',nama:'Nama / Inisial',unit:'Unit / Instalasi',jab:'Jabatan / Peran',prof:'Kelompok Profesi',lama:'Lama Bekerja'};
+  document.getElementById('r_ident').innerHTML=Object.keys(nm).map(k=>`<tr><th style="width:38%">${nm[k]}</th><td>${esc(ident[k]||'—')}</td></tr>`).join('');
+  document.getElementById('r_rekap').innerHTML=Object.keys(DOMS).map(c=>{
+    const v=av[c], lv=levelOf(v);
+    return `<tr><td><b>${c}</b></td><td>${esc(DOMS[c][0])}</td><td><b>${fmt(v)}</b></td><td>${lv[2].split('–')[1].trim()}</td>
+    <td><div class="dbar"><i style="width:${v/5*100}%"></i></div></td></tr>`;}).join('')
+    +`<tr style="background:#eef3f8"><td colspan="2"><b>SKOR MATURITAS KESELURUHAN</b></td><td><b>${fmt(overall)}</b></td><td><b>${L[2].split('–')[1].trim()}</b></td><td><div class="dbar"><i style="width:${overall/5*100}%"></i></div></td></tr>`;
+  document.getElementById('formView').classList.add('hide');
+  document.getElementById('resView').classList.remove('hide');
+  document.getElementById('bar').classList.add('hide');
+  window.scrollTo(0,0);
+}
+function backToForm(){document.getElementById('resView').classList.add('hide');
+  document.getElementById('formView').classList.remove('hide');document.getElementById('bar').classList.remove('hide');}
+
+function dlCSV(){
+  const av=domAvgs(); const overall=Object.values(av).reduce((a,b)=>a+b,0)/8;
+  const q=s=>'"'+String(s).replace(/"/g,'""')+'"';
+  let rows=[["Tanggal","Nama/Inisial","Unit","Jabatan","Profesi","Lama Bekerja"].map(q).join(",")];
+  rows.push([ident.tgl,ident.nama,ident.unit,ident.jab,ident.prof,ident.lama].map(q).join(","));
+  rows.push("");
+  rows.push(["No","Domain","Sub-Kategori","Faktor Uji","Skor"].map(q).join(","));
+  ITEMS.forEach(i=>rows.push([i.no,i.code+". "+DOMS[i.code][0],i.sub,i.q,ans[i.no]].map(q).join(",")));
+  rows.push("");
+  rows.push(["Kode","Domain","Rata-rata","Level"].map(q).join(","));
+  Object.keys(DOMS).forEach(c=>rows.push([c,DOMS[c][0],av[c].toFixed(2),levelOf(av[c])[2]].map(q).join(",")));
+  rows.push(["","SKOR MATURITAS KESELURUHAN",overall.toFixed(2),levelOf(overall)[2]].map(q).join(","));
+  const blob=new Blob(["\ufeff"+rows.join("\r\n")],{type:"text/csv;charset=utf-8;"});
+  const a=document.createElement("a");a.href=URL.createObjectURL(blob);
+  a.download="Maturitas_MRK_"+(ident.unit||"responden").replace(/\W+/g,"_")+"_"+(ident.tgl||"")+".csv";a.click();
+}
+render();
+document.querySelectorAll('#formView input,#formView select').forEach(e=>e.addEventListener('change',save));
+</script>
+</body>
+</html>
